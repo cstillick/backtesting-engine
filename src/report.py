@@ -12,6 +12,7 @@ Usage:
 
 from __future__ import annotations
 import os
+import re
 import json
 import matplotlib
 matplotlib.use("Agg")
@@ -60,7 +61,7 @@ def generate_tearsheet(
     """
     os.makedirs(PLOTS_DIR, exist_ok=True)
     if output_path is None:
-        safe_name = strategy_name.lower().replace(" ", "_")
+        safe_name = re.sub(r"[^a-z0-9]+", "_", strategy_name.lower()).strip("_")
         output_path = os.path.join(PLOTS_DIR, f"tearsheet_{safe_name}.png")
 
     # --- Align benchmark to strategy equity index ---
@@ -115,6 +116,7 @@ def generate_tearsheet(
     ax2.grid(True, color="#2a2a2a", linewidth=0.5)
 
     plt.tight_layout(rect=[0, 0, 1, 0.97])
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     plt.savefig(output_path, dpi=150, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close()
     print(f"Tearsheet saved to {output_path}")

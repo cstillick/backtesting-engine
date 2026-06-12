@@ -1,10 +1,21 @@
 # Backtesting Engine
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+![Tests](https://img.shields.io/badge/tests-16%20passing-brightgreen)
+
+
 A from-scratch Python backtesting engine for testing algorithmic trading strategies on historical market data.
 
 ## Why Build Your Own?
 
 Libraries like `backtrader` and `zipline` abstract away the details that matter most in interviews: *how* orders are filled, *how* slippage is modeled, *how* the portfolio tracks P&L bar-by-bar. Building from scratch means you can explain every design decision.
+
+## Example Output
+
+SMA crossover strategy on AAPL (2015 to 2017), versus buy and hold:
+
+![Example tearsheet](docs/images/tearsheet_sma_crossover.png)
 
 ## Architecture
 
